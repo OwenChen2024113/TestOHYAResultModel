@@ -7,8 +7,9 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Authors>TestAuthor</Authors>
         <PackageDescription>Test push OHYA ResultModel to github</PackageDescription>
-        <AssemblyVersion>1.0.0</AssemblyVersion>
+        <AssemblyVersion>1.0.1</AssemblyVersion>
         <FileVersion>1.0.0</FileVersion>
+        <Version>1.0.1</Version>
     </PropertyGroup>
 
 </Project>

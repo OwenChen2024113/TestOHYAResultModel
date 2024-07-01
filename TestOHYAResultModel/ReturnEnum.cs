@@ -10,8 +10,8 @@ public enum ReturnEnum
     /// <summary>登入失敗</summary>
     [Description("登入失敗")] LoginFail = 402,
 
-    /// <summary>取得資料失敗</summary>
-    [Description("參數錯誤，取得資料失敗")] GetFail = 422,
+    /// <summary>參數錯誤，執行/取得資料失敗</summary>
+    [Description("參數錯誤，執行/取得資料失敗")] GetFail = 422,
 
     /// <summary>查無資料</summary>
     [Description("查無資料")] NotFound = 404,
