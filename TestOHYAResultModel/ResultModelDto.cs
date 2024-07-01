@@ -54,6 +54,6 @@ public class ResultModelDto<T> : ResultModelDto
         Info = info;
     }
 
-    /// <summary>回傳資料 </summary>
+    /// <summary>回傳資料</summary>
     public T Info { get; set; }
 }
