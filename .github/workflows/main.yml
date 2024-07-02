@@ -16,6 +16,17 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Check if tag starts with 'v' and branch is 'main'
+      run: |
+        branch="${GITHUB_REF#refs/heads/}"
+        tag="${GITHUB_REF#refs/tags/}"
+        if [[ "${branch}" != "main" || "${tag}" != v* ]]; then
+          echo "Conditions not met, exiting..."
+          exit 1
+        else
+          echo "Conditions met, continuing..."
+        fi
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
