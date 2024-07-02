@@ -1,9 +1,6 @@
 name: Publish NuGet package
 
 on:
-  push:
-    tags:
-      - 'v*'
   workflow_call:
       secrets:
         UPDATE_PACKAGE_TOKEN:
@@ -16,12 +13,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Check if tag starts with 'v' and branch is 'main'
+    - name: Check if tag starts with 'v'
       run: |
-        branch="${GITHUB_REF#refs/heads/}"
         tag="${GITHUB_REF#refs/tags/}"
-        echo "b ${branch} t ${tag} "
-        if [[ "${branch}" != "main" || "${tag}" != v* ]]; then
+        echo "tag = ${tag} "
+        if [[ "${tag}" != v* ]]; then
           echo "Conditions not met, exiting..."
           exit 1
         else
@@ -57,7 +53,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: test-results
-        path: ./test-results # 解压到当前作业的工作目录中
+        path: ./test-results 
 
     - name: Test Report
       uses: dorny/test-reporter@v1
