@@ -18,8 +18,9 @@ jobs:
       with:
         dotnet-version: '6.0.x'
 
-    - name: Configure NuGet
-      run: dotnet nuget add source --username OwenChen2024113 --password ${{ secrets.PACKAGE_TOKEN }} --store-password-in-clear-text --name github https://nuget.pkg.github.com/OwenChen2024113/index.json
+    - name: Create NuGet Config
+      run: |
+        dotnet nuget add source --name github --username OwenChen2024113 --password ${{ secrets.PACKAGE_TOKEN }} --store-password-in-clear-text https://nuget.pkg.github.com/OwenChen2024113/index.json
 
     - name: Restore dependencies
       run: dotnet restore
