@@ -35,7 +35,16 @@ jobs:
       run: dotnet build --configuration Release --no-restore
 
     - name: Test
-      run: dotnet test
+      run: dotnet test  --logger "trx;LogFileName=test-results.trx" || true
+
+    - name: Test Report
+      uses: dorny/test-reporter@v1
+      if: always()
+      with:
+        name: DotNET Tests
+        path: "**/test-results.trx"                            
+        reporter: dotnet-trx
+        fail-on-error: true
 
     - name: Pack
       run: dotnet pack --configuration Release --no-build -o ./nupkg
