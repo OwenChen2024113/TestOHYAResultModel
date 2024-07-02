@@ -20,6 +20,7 @@ jobs:
       run: |
         branch="${GITHUB_REF#refs/heads/}"
         tag="${GITHUB_REF#refs/tags/}"
+        echo "b ${branch} t ${tag} "
         if [[ "${branch}" != "main" || "${tag}" != v* ]]; then
           echo "Conditions not met, exiting..."
           exit 1
