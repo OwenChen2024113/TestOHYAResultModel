@@ -14,9 +14,6 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    
-    permissions:
-      checks: write
 
     steps:
     - uses: actions/checkout@v2
@@ -40,12 +37,18 @@ jobs:
     - name: Test
       run: dotnet test  --logger "trx;LogFileName=test-results.trx" || true
 
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-results
+        path: "**/test-results.trx"
+
     - name: Test Report
       uses: dorny/test-reporter@v1
       if: always()
       with:
         name: DotNET Tests
-        path: "**/test-results.trx"                            
+        path: ${{ runner.workspace }}/test-results.trx                          
         reporter: dotnet-trx
         fail-on-error: true
 
