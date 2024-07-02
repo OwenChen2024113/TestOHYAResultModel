@@ -5,6 +5,9 @@ on:
     tags:
       - 'v*'
   workflow_call:
+      secrets:
+        PACKAGE_TOKEN:
+          required: true
  
 jobs:
   publish:
